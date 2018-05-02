@@ -18,6 +18,10 @@ $("#form-user-add").validate({
                 }
             }
 		},
+        studentId:{
+		    required:true,
+        },
+
 		userName:{
 			required:true,
 		},
@@ -25,13 +29,19 @@ $("#form-user-add").validate({
 			required:true,
 			minlength: 6
 		},
+        number:{
+		    required:true
+        },
+        deptId:{
+		    required:true
+        },
 		email:{
-			required:true,
+			// required:true,
 			email:true
 		},
-		phonenumber:{
-			required:true,
-		},
+		// phonenumber:{
+		// 	required:true,
+		// },
 	},
 	messages: {
         "loginName": {
@@ -51,6 +61,10 @@ function add() {
 	var password = $("input[name='password']").val();
 	var email = $("input[name='email']").val();
 	var phonenumber = $("input[name='phonenumber']").val();
+	var company = $("input[name='company']").val();
+	var companyAdress = $("input[name='companyAdress']").val();
+	var number = $("#number").val();
+	var studentId = $("#studentId").val();
 	var status = $("input[name='status']").is(':checked') == true ? 0 : 1;
 	var roleIds = $.getCheckeds("role");
 	var postIds = $("#post").val() + "";
@@ -59,6 +73,10 @@ function add() {
 		type : "POST",
 		url : "/system/user/save",
 		data : {
+		    "company":company,
+            "companyAdress":companyAdress,
+            "number":number,
+            "studentId":studentId,
 			"userId": userId,
 			"deptId": deptId,
 			"loginName": loginName,

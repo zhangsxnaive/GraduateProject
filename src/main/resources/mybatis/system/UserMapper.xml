@@ -9,6 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="deptId"       column="dept_id"      />
 		<result property="loginName"    column="login_name"   />
 		<result property="userName"     column="user_name"    />
+		<result property="number"     column="number"    />
+		<result property="studentId"     column="student_id"    />
+		<result property="company"     column="company"    />
+		<result property="companyAddress"     column="company_address"    />
 		<result property="email"        column="email"        />
 		<result property="phonenumber"  column="phonenumber"  />
 		<result property="password"     column="password"     />
@@ -102,6 +106,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="loginName != null and loginName != ''">login_name,</if>
  			<if test="userName != null and userName != ''">user_name,</if>
  			<if test="email != null and email != ''">email,</if>
+ 			<if test="number != null and number != ''">number,</if>
+ 			<if test="studentId != null and studentId != ''">student_id,</if>
+ 			<if test="company != null and company != ''">company,</if>
+ 			<if test="companyAddress != null and companyAddress != ''">company_address,</if>
  			<if test="phonenumber != null and phonenumber != ''">phonenumber,</if>
  			<if test="password != null and password != ''">password,</if>
  			<if test="salt != null and salt != ''">salt,</if>
@@ -115,6 +123,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="loginName != null and loginName != ''">#{loginName},</if>
  			<if test="userName != null and userName != ''">#{userName},</if>
  			<if test="email != null and email != ''">#{email},</if>
+            <if test="number != null and number != ''">#{number},</if>
+            <if test="studentId != null and studentId != ''">#{studentId},</if>
+            <if test="company != null and company != ''">#{company},</if>
+            <if test="companyAddress != null and companyAddress != ''">#{companyAddress},</if>
  			<if test="phonenumber != null and phonenumber != ''">#{phonenumber},</if>
  			<if test="password != null and password != ''">#{password},</if>
  			<if test="salt != null and salt != ''">#{salt},</if>

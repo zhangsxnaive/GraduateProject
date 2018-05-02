@@ -1,11 +1,10 @@
 package com.ruoyi.project.system.user.domain;
 
-import java.util.Arrays;
-
-import org.apache.shiro.crypto.SecureRandomNumberGenerator;
-
 import com.ruoyi.framework.web.page.PageDomain;
 import com.ruoyi.project.system.dept.domain.Dept;
+import org.apache.shiro.crypto.SecureRandomNumberGenerator;
+
+import java.util.Arrays;
 
 /**
  * 用户对象 sys_user
@@ -30,6 +29,14 @@ public class User extends PageDomain
     private String phonenumber;
     /** 密码 */
     private String password;
+    /** 届数 */
+    private Long number;
+    /** 学号 */
+    private String studentId;
+    /** 公司名称 */
+    private String company;
+    /** 公司地址 */
+    private String companyAddress;
     /** 盐加密 */
     private String salt;
     /** 类型:Y默认用户,N非默认用户 */
@@ -52,6 +59,38 @@ public class User extends PageDomain
     private Long[] roleIds;
     /** 岗位组 */
     private Long[] postIds;
+
+    public Long getNumber() {
+        return number;
+    }
+
+    public void setNumber(Long number) {
+        this.number = number;
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getCompanyAddress() {
+        return companyAddress;
+    }
+
+    public void setCompanyAddress(String companyAddress) {
+        this.companyAddress = companyAddress;
+    }
 
     public Long getUserId()
     {
