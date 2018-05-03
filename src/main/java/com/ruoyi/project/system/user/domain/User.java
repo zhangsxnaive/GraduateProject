@@ -59,6 +59,16 @@ public class User extends PageDomain
     private Long[] roleIds;
     /** 岗位组 */
     private Long[] postIds;
+    /** 就业状态 */
+    private String employee;
+
+    public String getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(String employee) {
+        this.employee = employee;
+    }
 
     public Long getNumber() {
         return number;

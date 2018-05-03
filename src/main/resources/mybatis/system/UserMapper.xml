@@ -14,6 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="company"     column="company"    />
 		<result property="companyAddress"     column="company_address"    />
 		<result property="email"        column="email"        />
+		<result property="employee"        column="employee"        />
 		<result property="phonenumber"  column="phonenumber"  />
 		<result property="password"     column="password"     />
 		<result property="salt"         column="salt"         />
@@ -36,19 +37,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	
 	<select id="selectUserList" parameterType="User" resultMap="UserResult">
-		select user_id, dept_id, login_name, user_name, email, phonenumber, password, salt, user_type, status, refuse_des, create_by, create_time from sys_user
+-- 		select user_id, dept_id, login_name, user_name, email, phonenumber,number,company,company_address,student_id,password, salt, user_type, status, refuse_des, create_by, create_time from sys_user
+        select  u.user_id, u.dept_id, u.login_name, u.user_name, u.email,u.number,u.employee,u.company,u.company_address, u.phonenumber,u.student_id, u.user_type,u.password, u.salt, u.status, u.refuse_des,u.create_by, u.create_time,
+        d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status
+        from sys_user u
+        left join sys_dept d on u.dept_id = d.dept_id
 		<where>
 			<if test="searchValue != null and searchValue != ''">
-				AND login_name = #{searchValue}
+				AND u.login_name = #{searchValue}
 			</if>
 			<if test="deptId != null and parentId != null and parentId != 0">
-				AND dept_id IN (SELECT dept_id FROM sys_dept WHERE dept_id = #{deptId} OR parent_id = #{deptId})
+				AND u.dept_id IN (SELECT dept_id FROM sys_dept WHERE dept_id = #{deptId} OR parent_id = #{deptId})
 			</if>
 		</where>
 	</select>
 	
 	<select id="selectUserByName" parameterType="String" resultMap="UserResult">
-		select  u.user_id, u.dept_id, u.login_name, u.user_name, u.email, u.phonenumber, u.password, u.salt, u.status, u.refuse_des, u.create_time,
+		select  u.user_id, u.dept_id, u.login_name, u.user_name, u.email,u.employee, u.phonenumber, u.password, u.salt, u.status, u.refuse_des, u.create_time,
        		    d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status
 		from sys_user u
 			 left join sys_dept d on u.dept_id = d.dept_id
@@ -61,7 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="selectUserById" parameterType="Long" resultMap="UserResult">
-		select  u.user_id, u.dept_id, u.login_name, u.user_name, u.email, u.phonenumber, u.password, u.salt, u.status, u.refuse_des, u.create_time,
+		select  u.user_id, u.dept_id, u.login_name, u.user_name, u.email, u.student_id,u.number,u.company,u.company_address,u.phonenumber, u.password, u.salt, u.status, u.refuse_des, u.create_time,
        		    d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status
 		from sys_user u
 			 left join sys_dept d on u.dept_id = d.dept_id
@@ -89,8 +94,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="email != null and email != ''">email = #{email},</if>
  			<if test="phonenumber != null and phonenumber != ''">phonenumber = #{phonenumber},</if>
  			<if test="password != null and password != ''">password = #{password},</if>
+            <if test="number != null and number != ''">number = #{number},</if>
+            <if test="studentId != null and studentId != ''">student_id=#{studentId},</if>
+            <if test="company != null and company != ''">company=#{company},</if>
+            <if test="companyAddress != null and companyAddress != ''">company_address=#{companyAddress},</if>
  			<if test="salt != null and salt != ''">salt = #{salt},</if>
  			<if test="status !=null">status = #{status},</if>
+ 			<if test="employee !=null">employee = #{employee},</if>
  			<if test="refuseDes != null and refuseDes != ''">refuse_des = #{refuseDes},</if>
  			<if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
  			update_time = sysdate()
@@ -112,6 +122,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="companyAddress != null and companyAddress != ''">company_address,</if>
  			<if test="phonenumber != null and phonenumber != ''">phonenumber,</if>
  			<if test="password != null and password != ''">password,</if>
+ 			<if test="employee != null and employee != ''">employee,</if>
  			<if test="salt != null and salt != ''">salt,</if>
  			<if test="status !=null and status != ''">status,</if>
  			<if test="refuseDes != null and refuseDes != ''">refuse_des,</if>
@@ -129,6 +140,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="companyAddress != null and companyAddress != ''">#{companyAddress},</if>
  			<if test="phonenumber != null and phonenumber != ''">#{phonenumber},</if>
  			<if test="password != null and password != ''">#{password},</if>
+ 			<if test="employee != null and employee != ''">#{employee},</if>
  			<if test="salt != null and salt != ''">#{salt},</if>
  			<if test="status !=null and status != ''">#{status},</if>
  			<if test="refuseDes != null and refuseDes != ''">#{refuseDes},</if>

@@ -1,16 +1,5 @@
 package com.ruoyi.project.system.user.controller;
 
-import java.util.List;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import com.ruoyi.framework.aspectj.lang.annotation.Log;
 import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.domain.Message;
@@ -21,6 +10,13 @@ import com.ruoyi.project.system.role.domain.Role;
 import com.ruoyi.project.system.role.service.IRoleService;
 import com.ruoyi.project.system.user.domain.User;
 import com.ruoyi.project.system.user.service.IUserService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 用户信息
@@ -157,8 +153,12 @@ public class UserController extends BaseController
     @ResponseBody
     public Message save(User user)
     {
+        Long[] postId = user.getPostIds();
+        Post post = postService.selectPostById(postId[0]);
+        user.setEmployee(post.getPostName());
         if (userService.saveUser(user) > 0)
         {
+
             return Message.ok();
         }
         return Message.error();

@@ -62,7 +62,7 @@ function add() {
 	var email = $("input[name='email']").val();
 	var phonenumber = $("input[name='phonenumber']").val();
 	var company = $("input[name='company']").val();
-	var companyAdress = $("input[name='companyAdress']").val();
+	var companyAddress = $("input[name='companyAddress']").val();
 	var number = $("#number").val();
 	var studentId = $("#studentId").val();
 	var status = $("input[name='status']").is(':checked') == true ? 0 : 1;
@@ -74,7 +74,7 @@ function add() {
 		url : "/system/user/save",
 		data : {
 		    "company":company,
-            "companyAdress":companyAdress,
+            "companyAddress":companyAddress,
             "number":number,
             "studentId":studentId,
 			"userId": userId,

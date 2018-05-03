@@ -7,13 +7,17 @@ $("#form-user-edit").validate({
 			required:true,
 			minlength: 6
 		},
-		email:{
-			required:true,
+        studentId:{
+            required:true,
+        },
+
+        email:{
+			// required:true,
 			email:true
 		},
-		phonenumber:{
-			required:true,
-		},
+		// phonenumber:{
+		// 	required:true,
+		// },
 	},
 	submitHandler:function(form){
 		update();
@@ -27,6 +31,10 @@ function update() {
 	var password = $("input[name='password']").val();
 	var email = $("input[name='email']").val();
 	var phonenumber = $("input[name='phonenumber']").val();
+    var company = $("input[name='company']").val();
+    var companyAddress = $("input[name='companyAddress']").val();
+    var number = $("#number").val();
+    var studentId = $("#studentId").val();
 	var status = $("input[name='status']").is(':checked') == true ? 0 : 1;
 	var roleIds = $.getCheckeds("role");
 	var postIds = $("#post").val() + "";
@@ -35,6 +43,10 @@ function update() {
 		type : "POST",
 		url : "/system/user/save",
 		data : {
+            "company":company,
+            "companyAddress":companyAddress,
+            "number":number,
+            "studentId":studentId,
 			"userId": userId,
 			"deptId": deptId,
 			"userName": userName,

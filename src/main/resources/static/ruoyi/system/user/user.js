@@ -17,23 +17,32 @@ function queryUserList() {
         },
         {
             field: 'loginName',
-            title: '登录名称'
+            title: '登录名'
         },
         {
             field: 'userName',
-            title: '用户名称'
+            title: '学生姓名'
         },
         {
-            field: 'email',
-            title: '邮箱'
+            field: 'studentId',
+            title: '学号'
         },
         {
-            field: 'phonenumber',
-            title: '手机'
+            field: 'number',
+            title: '届数'
         },
+        {
+            field: 'dept.deptName',
+            title: '专业'
+        },
+        {
+            field: 'employee',
+            title: '就业状态'
+        },
+
         {
             field: 'status',
-            title: '状态',
+            title: '账户状态',
             align: 'center',
             formatter: function(value, row, index) {
                 if (value == '0') {
@@ -44,22 +53,18 @@ function queryUserList() {
             }
         },
         {
-            field: 'createTime',
-            title: '创建时间'
-        },
-        {
             title: '操作',
             align: 'center',
             formatter: function(value, row, index) {
-            	if(row.userType == "N") {
-            		var actions = [];
-                	actions.push('<a class="btn btn-primary btn-sm ' + editFlag + '" href="#" title="编辑" onclick="edit(\'' + row.userId + '\')"><i class="fa fa-edit"></i></a> ');
-                	actions.push('<a class="btn btn-warning btn-sm ' + removeFlag + '" href="#" title="删除" onclick="remove(\'' + row.userId + '\')"><i class="fa fa-remove"></i></a> ');
-                	actions.push('<a class="btn btn-success btn-sm ' + resetPwdFlag + '"  href="#" title="重置" onclick="resetPwd(\'' + row.userId + '\')"><i class="fa fa-key"></i></a>');
-                	return actions.join('');
-				} else {
-					return "";
-				}
+                if(row.userType == "N") {
+                    var actions = [];
+                    actions.push('<a class="btn btn-primary btn-sm ' + editFlag + '" href="#" title="编辑" onclick="edit(\'' + row.userId + '\')"><i class="fa fa-edit"></i></a> ');
+                    actions.push('<a class="btn btn-warning btn-sm ' + removeFlag + '" href="#" title="删除" onclick="remove(\'' + row.userId + '\')"><i class="fa fa-remove"></i></a> ');
+                    actions.push('<a class="btn btn-success btn-sm ' + resetPwdFlag + '"  href="#" title="重置" onclick="resetPwd(\'' + row.userId + '\')"><i class="fa fa-key"></i></a>');
+                    return actions.join('');
+                } else {
+                    return "";
+                }
             }
         }];
 	var url = prefix + "/list";
