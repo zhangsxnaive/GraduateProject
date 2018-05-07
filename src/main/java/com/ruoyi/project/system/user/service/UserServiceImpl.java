@@ -1,11 +1,5 @@
 package com.ruoyi.project.system.user.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.ruoyi.common.constant.UserConstants;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.common.utils.security.ShiroUtils;
@@ -16,6 +10,11 @@ import com.ruoyi.project.system.user.dao.IUserRoleDao;
 import com.ruoyi.project.system.user.domain.User;
 import com.ruoyi.project.system.user.domain.UserPost;
 import com.ruoyi.project.system.user.domain.UserRole;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 用户 业务层处理
@@ -203,7 +202,7 @@ public class UserServiceImpl implements IUserService
     /**
      * 校验用户名称是否唯一
      * 
-     * @param userName 用户名
+     * @param loginName 用户名
      * @return
      */
     @Override
@@ -215,5 +214,10 @@ public class UserServiceImpl implements IUserService
             return UserConstants.NAME_NOT_UNIQUE;
         }
         return UserConstants.NAME_UNIQUE;
+    }
+
+    @Override
+    public List<User> selectUserListByPostId(Long postId) {
+        return userDao.selectUserListByPostId(postId);
     }
 }

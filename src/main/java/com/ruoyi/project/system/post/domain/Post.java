@@ -21,6 +21,8 @@ public class Post extends PageDomain
     private int status;
     /** 用户是否存在此岗位标识 默认不存在 */
     private boolean flag = false;
+    /** 查询此状态的用户url */
+    private String url;
     /** 创建者 */
     private String createBy;
     /** 创建时间 */
@@ -140,6 +142,14 @@ public class Post extends PageDomain
     public void setRemark(String remark)
     {
         this.remark = remark;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override

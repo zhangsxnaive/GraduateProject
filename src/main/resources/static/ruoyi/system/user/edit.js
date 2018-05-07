@@ -36,7 +36,7 @@ function update() {
     var number = $("#number").val();
     var studentId = $("#studentId").val();
 	var status = $("input[name='status']").is(':checked') == true ? 0 : 1;
-	var roleIds = $.getCheckeds("role");
+	var roleIds = $("#role").val()+"";
 	var postIds = $("#post").val() + "";
 	$.ajax({
 		cache : true,

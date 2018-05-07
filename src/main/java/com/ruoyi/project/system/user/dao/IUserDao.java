@@ -1,7 +1,8 @@
 package com.ruoyi.project.system.user.dao;
 
-import java.util.List;
 import com.ruoyi.project.system.user.domain.User;
+
+import java.util.List;
 
 /**
  * 用户表 数据层
@@ -75,4 +76,5 @@ public interface IUserDao
      */
     public int checkUserNameUnique(String loginName);
 
+    List<User> selectUserListByPostId(Long postId);
 }

@@ -56,6 +56,15 @@ public class UserController extends BaseController
         return getDataTable(list);
     }
 
+    @GetMapping("/list/{postId}")
+    @ResponseBody
+    public TableDataInfo listBypostId(@PathVariable("postId")Long postId, User user)
+    {
+        setPageInfo(user);
+        List<User> list = userService.selectUserListByPostId(postId);
+        return getDataTable(list);
+    }
+
     /**
      * 修改用户
      */

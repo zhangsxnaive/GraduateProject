@@ -44,6 +44,9 @@
                     <a href="index.html"><i class="fa fa-home"></i> <span class="nav-label">主页</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li class="active"><a class="menuItem" th:href="@{/system/main}">了解若依</a></li>
+                        <li th:each="post : ${posts}" class="active">
+                            <a class="menuItem" th:text="${post.postName}" th:href="${post.url}"></a>
+                        </li>
                     </ul>
                 </li>
                 <li th:each="menu : ${menus}">
