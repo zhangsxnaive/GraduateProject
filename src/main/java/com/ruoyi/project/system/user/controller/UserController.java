@@ -56,12 +56,17 @@ public class UserController extends BaseController
         return getDataTable(list);
     }
 
+    public List<Long> getUserIdByPostId(String postId) {
+        return userService.getUserIdByPostId(Long.valueOf(postId));
+    }
+
     @GetMapping("/list/{postId}")
     @ResponseBody
-    public TableDataInfo listBypostId(@PathVariable("postId")Long postId, User user)
+    public TableDataInfo listBypostId(@PathVariable("postId")String postId, User user)
     {
+        user.setPostId(Long.valueOf(postId));
         setPageInfo(user);
-        List<User> list = userService.selectUserListByPostId(postId);
+        List<User> list = userService.selectUserListByPostId(user);
         return getDataTable(list);
     }
 
@@ -157,7 +162,7 @@ public class UserController extends BaseController
      * 保存
      */
     @RequiresPermissions("system:user:save")
-    @Log(title = "系统管理", action = "部门管理-保存部门")
+    @Log(title = "系统管理", action = "用户管理-用户保存")
     @PostMapping("/save")
     @ResponseBody
     public Message save(User user)
@@ -165,6 +170,12 @@ public class UserController extends BaseController
         Long[] postId = user.getPostIds();
         Post post = postService.selectPostById(postId[0]);
         user.setEmployee(post.getPostName());
+        user.setPostId(postId[0]);
+
+        for (Long id :
+                user.getRoleIds()) {
+            System.out.println("=============>"+id);
+        }
         if (userService.saveUser(user) > 0)
         {
 

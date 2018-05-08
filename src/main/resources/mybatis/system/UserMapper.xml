@@ -49,7 +49,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 	</select>
-	
+
+    <select id="selectUserListByPostId" parameterType="User" resultMap="UserResult">
+        select  u.user_id, u.dept_id, u.login_name, u.user_name, u.email,u.number,u.employee,u.company,u.company_address, u.phonenumber,u.student_id, u.user_type,u.password, u.salt, u.status, u.refuse_des,u.create_by, u.create_time,
+        d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status
+        from sys_user u
+        left join sys_dept d on u.dept_id = d.dept_id
+        <where>
+            <if test="searchValue != null and searchValue != ''">
+                AND u.login_name = #{searchValue}
+            </if>
+            <if test="postId != null">
+                and u.post_id = #{postId}
+            </if>
+            <if test="deptId != null and parentId != null and parentId != 0">
+                AND u.dept_id IN (SELECT dept_id FROM sys_dept WHERE dept_id = #{deptId} OR parent_id = #{deptId})
+            </if>
+        </where>
+    </select>
+
 	<select id="selectUserByName" parameterType="String" resultMap="UserResult">
 		select  u.user_id, u.dept_id, u.login_name, u.user_name, u.email,u.employee, u.phonenumber, u.password, u.salt, u.status, u.refuse_des, u.create_time,
        		    d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status
@@ -97,6 +115,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="company != null and company != ''">company=#{company},</if>
             <if test="companyAddress != null and companyAddress != ''">company_address=#{companyAddress},</if>
  			<if test="salt != null and salt != ''">salt = #{salt},</if>
+ 			<if test="postId != null and postId != ''">post_id = #{postId},</if>
  			<if test="status !=null">status = #{status},</if>
  			<if test="employee !=null">employee = #{employee},</if>
  			<if test="refuseDes != null and refuseDes != ''">refuse_des = #{refuseDes},</if>
@@ -122,6 +141,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="password != null and password != ''">password,</if>
  			<if test="employee != null and employee != ''">employee,</if>
  			<if test="salt != null and salt != ''">salt,</if>
+            <if test="postId != null and postId != ''">post_id,</if>
  			<if test="status !=null and status != ''">status,</if>
  			<if test="refuseDes != null and refuseDes != ''">refuse_des,</if>
  			<if test="createBy != null and createBy != ''">create_by,</if>
@@ -140,6 +160,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="password != null and password != ''">#{password},</if>
  			<if test="employee != null and employee != ''">#{employee},</if>
  			<if test="salt != null and salt != ''">#{salt},</if>
+            <if test="postId != null and postId != ''">#{postId},</if>
  			<if test="status !=null and status != ''">#{status},</if>
  			<if test="refuseDes != null and refuseDes != ''">#{refuseDes},</if>
  			<if test="createBy != null and createBy != ''">#{createBy},</if>

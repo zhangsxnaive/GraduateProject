@@ -76,5 +76,5 @@ public interface IUserDao
      */
     public int checkUserNameUnique(String loginName);
 
-    List<User> selectUserListByPostId(Long postId);
+    List<User> selectUserListByPostId(User user);
 }

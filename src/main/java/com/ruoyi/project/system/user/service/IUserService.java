@@ -76,5 +76,8 @@ public interface IUserService
      */
     public String checkUserNameUnique(String loginName);
 
-    List<User> selectUserListByPostId(Long postId);
+    List<User> selectUserListByPostId(User user);
+
+    List<Long> getUserIdByPostId(Long postId);
+
 }

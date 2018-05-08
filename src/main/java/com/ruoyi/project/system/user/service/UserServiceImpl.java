@@ -85,6 +85,8 @@ public class UserServiceImpl implements IUserService
     {
         // 删除用户与角色关联
         userRoleDao.deleteUserRoleByUserId(userId);
+        // 删除用户与就业状态关联
+        userPostDao.deleteUserPostByUserId(userId);
         return userDao.deleteUserById(userId);
     }
 
@@ -97,6 +99,11 @@ public class UserServiceImpl implements IUserService
     @Override
     public int batchDeleteUser(Long[] ids)
     {
+        for (Long id:
+                ids) {
+            userPostDao.deleteUserPostByUserId(id);
+            userRoleDao.deleteUserRoleByUserId(id);
+        }
         return userDao.batchDeleteUser(ids);
     }
 
@@ -166,6 +173,7 @@ public class UserServiceImpl implements IUserService
         List<UserRole> list = new ArrayList<UserRole>();
         for (Long roleId : user.getRoleIds())
         {
+            System.out.println("============>"+roleId);
             UserRole ur = new UserRole();
             ur.setUserId(user.getUserId());
             ur.setRoleId(roleId);
@@ -217,7 +225,13 @@ public class UserServiceImpl implements IUserService
     }
 
     @Override
-    public List<User> selectUserListByPostId(Long postId) {
-        return userDao.selectUserListByPostId(postId);
+    public List<User> selectUserListByPostId(User user) {
+
+        return userDao.selectUserListByPostId(user);
+    }
+
+    @Override
+    public List<Long> getUserIdByPostId(Long postId) {
+        return userPostDao.selectUserIdList(postId);
     }
 }

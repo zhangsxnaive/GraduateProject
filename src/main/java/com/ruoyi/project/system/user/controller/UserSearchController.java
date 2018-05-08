@@ -18,7 +18,7 @@ public class UserSearchController extends BaseController {
     private String prefix = "system/user";
 
     @GetMapping("/search/{postId}")
-    public String searchUser(@PathVariable("postId") Long postId, Model model) {
+    public String searchUser(@PathVariable("postId") String postId, Model model) {
         model.addAttribute("postId",postId);
         return prefix+"/userlist";
     }

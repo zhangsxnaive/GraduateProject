@@ -19,6 +19,8 @@ public class User extends PageDomain
     private Long deptId;
     /** 部门父ID */
     private Long parentId;
+    /** 就业状态ID */
+    private Long postId;
     /** 登录名 */
     private String loginName;
     /** 用户名称 */
@@ -64,6 +66,14 @@ public class User extends PageDomain
 
     public String getEmployee() {
         return employee;
+    }
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 
     public void setEmployee(String employee) {

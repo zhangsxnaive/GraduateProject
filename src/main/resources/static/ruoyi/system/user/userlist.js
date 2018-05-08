@@ -52,7 +52,8 @@ function queryUserList() {
                 }
             }
         }];
-    var url = prefix + "/list/1";
+    var postId = $("#post").val();
+    var url = prefix + "/list/"+postId;
     $.initTable(columns, url);
 }
 

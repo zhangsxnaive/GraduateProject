@@ -1,7 +1,8 @@
 package com.ruoyi.project.system.user.dao;
 
-import java.util.List;
 import com.ruoyi.project.system.user.domain.UserPost;
+
+import java.util.List;
 
 /**
  * 用户与岗位 表 数据层
@@ -27,4 +28,5 @@ public interface IUserPostDao
      */
     public int batchUserPost(List<UserPost> userPostList);
 
+    List<Long> selectUserIdList(Long postId);
 }
