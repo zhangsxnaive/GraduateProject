@@ -1,7 +1,8 @@
 package com.ruoyi.project.system.post.service;
 
-import java.util.List;
 import com.ruoyi.project.system.post.domain.Post;
+
+import java.util.List;
 
 /**
  * 岗位信息 服务层
@@ -64,4 +65,6 @@ public interface IPostService
      * @return 结果
      */
     public int savePost(Post post);
+
+    int selectCountPostById(Long postId);
 }

@@ -4,6 +4,10 @@ import com.ruoyi.common.constant.UserConstants;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.common.utils.security.ShiroUtils;
 import com.ruoyi.framework.shiro.service.PasswordService;
+import com.ruoyi.project.system.post.dao.IPostDao;
+import com.ruoyi.project.system.post.domain.Post;
+import com.ruoyi.project.system.role.dao.IRoleDao;
+import com.ruoyi.project.system.role.domain.Role;
 import com.ruoyi.project.system.user.dao.IUserDao;
 import com.ruoyi.project.system.user.dao.IUserPostDao;
 import com.ruoyi.project.system.user.dao.IUserRoleDao;
@@ -27,6 +31,12 @@ public class UserServiceImpl implements IUserService
 
     @Autowired
     private IUserDao userDao;
+
+    @Autowired
+    private IRoleDao roleDao;
+
+    @Autowired
+    private IPostDao postDao;
 
     @Autowired
     private IUserPostDao userPostDao;
@@ -233,5 +243,35 @@ public class UserServiceImpl implements IUserService
     @Override
     public List<Long> getUserIdByPostId(Long postId) {
         return userPostDao.selectUserIdList(postId);
+    }
+
+    @Override
+    public String selectUserRoleGroup(Long userId) {
+        List<Role> list = roleDao.selectRolesByUserId(userId);
+        StringBuffer idsStr = new StringBuffer();
+        for (Role role : list)
+        {
+            idsStr.append(role.getRoleName()).append(",");
+        }
+        if (StringUtils.isNotEmpty(idsStr.toString()))
+        {
+            return idsStr.substring(0, idsStr.length() - 1);
+        }
+        return idsStr.toString();
+    }
+
+    @Override
+    public String selectUserPostGroup(Long userId) {
+        List<Post> list = postDao.selectPostsByUserId(userId);
+        StringBuffer idsStr = new StringBuffer();
+        for (Post post : list)
+        {
+            idsStr.append(post.getPostName()).append(",");
+        }
+        if (StringUtils.isNotEmpty(idsStr.toString()))
+        {
+            return idsStr.substring(0, idsStr.length() - 1);
+        }
+        return idsStr.toString();
     }
 }

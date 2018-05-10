@@ -35,6 +35,8 @@ public class User extends PageDomain
     private Long number;
     /** 学号 */
     private String studentId;
+    /** 性别 */
+    private String gender;
     /** 公司名称 */
     private String company;
     /** 公司地址 */
@@ -63,6 +65,14 @@ public class User extends PageDomain
     private Long[] postIds;
     /** 就业状态 */
     private String employee;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     public String getEmployee() {
         return employee;

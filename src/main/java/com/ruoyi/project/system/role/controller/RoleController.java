@@ -1,22 +1,18 @@
 package com.ruoyi.project.system.role.controller;
 
-import java.util.List;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import com.ruoyi.framework.aspectj.lang.annotation.Log;
 import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.domain.Message;
 import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.project.system.role.domain.Role;
 import com.ruoyi.project.system.role.service.IRoleService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 角色信息
@@ -32,7 +28,6 @@ public class RoleController extends BaseController
 
     @Autowired
     private IRoleService roleService;
-    
     @RequiresPermissions("system:role:view")
     @GetMapping()
     public String role()
@@ -100,6 +95,9 @@ public class RoleController extends BaseController
         if (role == null)
         {
             return Message.error("角色不存在");
+        }
+        if(roleService.selectCountById(roleId)>0){
+            return Message.error("角色已分配,无法删除");
         }
         if (roleService.deleteRoleById(roleId) > 0)
         {

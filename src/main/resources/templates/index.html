@@ -29,12 +29,12 @@
             <ul class="nav" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-                         <img src="img/profile_small.jpg" alt="image" class="img-circle" height="60" width="60"/></span>
+                         <img src="img/profile-tsc.png" alt="image" class="img-circle" height="60" width="60"/></span>
                          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                          <span class="clear"><span class="block m-t-xs"><strong class="font-bold" th:text="${user.userName}">RuoYi</strong></span>
                          <span class="text-muted text-xs block" th:text="${user.dept.deptName}">研发部<b class="caret"></b></span> </span> </a>
                          <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                             <li><a class="menuItem" href="profile.html">个人信息</a></li>
+                             <li><a class="menuItem" th:href="@{/system/user/profile}">个人信息</a></li>
                              <li class="divider"></li>
                              <li><a href="/logout">退出</a></li>
                          </ul>
@@ -76,17 +76,17 @@
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-default " href="#" title="收起菜单">
                     	<i class="fa fa-bars"></i>
                     </a>
-                    <form role="search" class="navbar-form-custom" method="post" action="">
-                        <div class="form-group">
-                            <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search" id="top-search">
-                        </div>
-                    </form>
+                    <!--<form role="search" class="navbar-form-custom" method="post" action="">-->
+                        <!--<div class="form-group">-->
+                            <!--<input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search" id="top-search">-->
+                        <!--</div>-->
+                    <!--</form>-->
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
 	                <li>
-	                    <span class="m-r-sm text-muted welcome-message">欢迎来到高校毕业生去向管理系统.</span>
+	                    <span class="m-r-sm text-muted welcome-message">欢迎来到毕业生去向管理系统.</span>
 	                </li>
-                    <li class="hidden-xs"><a href="/logout" ><i class="fa fa-sign-out"></i>退出</li>
+                    <li class="hidden-xs"><a href="/logout" ><i class="fa fa-sign-out"></i>退出</a></li>
                 </ul>
             </nav>
         </div>

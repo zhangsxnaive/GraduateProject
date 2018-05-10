@@ -11,14 +11,14 @@ function queryUserList() {
     var columns = [{
         checkbox: true
     },
-        {
-            field: 'userId',
-            title: '用户ID'
-        },
-        {
-            field: 'loginName',
-            title: '登录名'
-        },
+        // {
+        //     field: 'userId',
+        //     title: '用户ID'
+        // },
+        // {
+        //     field: 'loginName',
+        //     title: '登录名'
+        // },
         {
             field: 'userName',
             title: '学生姓名'
@@ -39,19 +39,19 @@ function queryUserList() {
             field: 'employee',
             title: '就业状态'
         },
-
-        {
-            field: 'status',
-            title: '账户状态',
-            align: 'center',
-            formatter: function(value, row, index) {
-                if (value == '0') {
-                    return '<span class="label label-success">正常</span>';
-                } else if (value == '1') {
-                    return '<span class="label label-danger">禁用</span>';
-                }
-            }
-        }];
+        // {
+        //     field: 'status',
+        //     title: '账户状态',
+        //     align: 'center',
+        //     formatter: function(value, row, index) {
+        //         if (value == '0') {
+        //             return '<span class="label label-success">正常</span>';
+        //         } else if (value == '1') {
+        //             return '<span class="label label-danger">禁用</span>';
+        //         }
+        //     }
+        // }
+        ];
     var postId = $("#post").val();
     var url = prefix + "/list/"+postId;
     $.initTable(columns, url);

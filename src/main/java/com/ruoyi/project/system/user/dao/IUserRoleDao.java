@@ -1,7 +1,8 @@
 package com.ruoyi.project.system.user.dao;
 
-import java.util.List;
 import com.ruoyi.project.system.user.domain.UserRole;
+
+import java.util.List;
 
 /**
  * 用户表 数据层
@@ -35,4 +36,5 @@ public interface IUserRoleDao
      */
     public int batchUserRole(List<UserRole> userRoleList);
 
+    int selectCountById(Long roleId);
 }

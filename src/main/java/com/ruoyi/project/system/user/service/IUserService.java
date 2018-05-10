@@ -80,4 +80,7 @@ public interface IUserService
 
     List<Long> getUserIdByPostId(Long postId);
 
+    String selectUserRoleGroup(Long userId);
+
+    String selectUserPostGroup(Long userId);
 }

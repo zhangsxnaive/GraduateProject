@@ -10,7 +10,9 @@ $("#form-user-edit").validate({
         studentId:{
             required:true,
         },
-
+        gender:{
+            required:true
+        },
         email:{
 			// required:true,
 			email:true
@@ -31,6 +33,7 @@ function update() {
 	var password = $("input[name='password']").val();
 	var email = $("input[name='email']").val();
 	var phonenumber = $("input[name='phonenumber']").val();
+    var gender = $("input[name='gender']:checked").val();
     var company = $("input[name='company']").val();
     var companyAddress = $("input[name='companyAddress']").val();
     var number = $("#number").val();
@@ -53,6 +56,7 @@ function update() {
 			"password": password,
 			"email": email,
 			"phonenumber": phonenumber,
+            "gender": gender,
 			"status": status,
 			"roleIds": roleIds,
 			"postIds": postIds

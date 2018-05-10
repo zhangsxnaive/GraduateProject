@@ -1,12 +1,14 @@
 package com.ruoyi.project.system.post.service;
 
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.common.utils.security.ShiroUtils;
 import com.ruoyi.project.system.post.dao.IPostDao;
 import com.ruoyi.project.system.post.domain.Post;
+import com.ruoyi.project.system.user.dao.IUserPostDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 岗位信息 服务层处理
@@ -18,6 +20,9 @@ public class PostServiceImpl implements IPostService
 {
     @Autowired
     private IPostDao postDao;
+
+    @Autowired
+    private IUserPostDao userPostDao;
 
     /**
      * 查询岗位信息集合
@@ -129,6 +134,11 @@ public class PostServiceImpl implements IPostService
             count = postDao.insertPost(post);
         }
         return count;
+    }
+
+    @Override
+    public int selectCountPostById(Long postId) {
+        return userPostDao.selectCountPostById(postId);
     }
 
 }

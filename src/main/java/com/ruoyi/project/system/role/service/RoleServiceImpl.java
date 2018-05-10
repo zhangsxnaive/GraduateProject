@@ -212,4 +212,9 @@ public class RoleServiceImpl implements IRoleService
         return UserConstants.NAME_UNIQUE;
     }
 
+    @Override
+    public int selectCountById(Long roleId) {
+        return userRoleDao.selectCountById(roleId);
+    }
+
 }

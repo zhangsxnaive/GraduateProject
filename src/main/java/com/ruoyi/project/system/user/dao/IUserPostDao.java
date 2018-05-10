@@ -29,4 +29,6 @@ public interface IUserPostDao
     public int batchUserPost(List<UserPost> userPostList);
 
     List<Long> selectUserIdList(Long postId);
+
+    int selectCountPostById(Long postId);
 }

@@ -35,6 +35,9 @@ $("#form-user-add").validate({
         deptId:{
 		    required:true
         },
+        gender:{
+		    required:true
+        },
 		email:{
 			// required:true,
 			email:true
@@ -61,7 +64,8 @@ function add() {
 	var password = $("input[name='password']").val();
 	var email = $("input[name='email']").val();
 	var phonenumber = $("input[name='phonenumber']").val();
-	var company = $("input[name='company']").val();
+    var gender = $("input[name='gender']:checked").val();
+    var company = $("input[name='company']").val();
 	var companyAddress = $("input[name='companyAddress']").val();
 	var number = $("#number").val();
 	var studentId = $("#studentId").val();
@@ -84,6 +88,7 @@ function add() {
 			"password": password,
 			"email": email,
 			"phonenumber": phonenumber,
+            "gender": gender,
 			"status": status,
 			"roleIds": roleIds,
 			"postIds": postIds
