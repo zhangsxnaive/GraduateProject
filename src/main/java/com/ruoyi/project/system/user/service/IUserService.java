@@ -76,6 +76,14 @@ public interface IUserService
      */
     public String checkUserNameUnique(String loginName);
 
+    /**
+     * 修改用户密码信息
+     *
+     * @param user 用户信息
+     * @return 结果
+     */
+    int resetUserPwd(User user);
+
     List<User> selectUserListByPostId(User user);
 
     List<Long> getUserIdByPostId(Long postId);

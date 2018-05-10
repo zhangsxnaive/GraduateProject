@@ -1,6 +1,5 @@
 package com.ruoyi.framework.web.controller;
 
-import java.util.List;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ruoyi.common.utils.StringUtils;
@@ -10,6 +9,8 @@ import com.ruoyi.framework.web.page.PageUtilEntity;
 import com.ruoyi.framework.web.page.TableDataInfo;
 import com.ruoyi.framework.web.support.TableSupport;
 import com.ruoyi.project.system.user.domain.User;
+
+import java.util.List;
 
 /**
  * web层通用数据处理
@@ -54,6 +55,10 @@ public class BaseController
         return rspData;
     }
 
+    public void setUser(User user)
+    {
+        ShiroUtils.setUser(user);
+    }
     public User getUser()
     {
         return ShiroUtils.getUser();

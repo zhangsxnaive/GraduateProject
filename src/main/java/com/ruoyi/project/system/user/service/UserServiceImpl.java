@@ -235,6 +235,13 @@ public class UserServiceImpl implements IUserService
     }
 
     @Override
+    public int resetUserPwd(User user) {
+        user.randomSalt();
+        user.setPassword(passwordService.encryptPassword(user.getLoginName(), user.getPassword(), user.getSalt()));
+        return userDao.updateUser(user);
+    }
+
+    @Override
     public List<User> selectUserListByPostId(User user) {
 
         return userDao.selectUserListByPostId(user);
