@@ -6,15 +6,15 @@ $(function() {
         },
         {
             field: 'postId',
-            title: '岗位编号'
+            title: '去向编号'
         },
         {
             field: 'postCode',
-            title: '岗位编码'
+            title: '去向编码'
         },
         {
             field: 'postName',
-            title: '岗位名称'
+            title: '去向名称'
         },
         {
             field: 'postSort',
@@ -53,18 +53,18 @@ $(function() {
 /*岗位管理-新增*/
 function add() {
     var url = prefix + '/add';
-    layer_showAuto("新增岗位", url);
+    layer_showAuto("新增去向", url);
 }
 
 /*岗位管理-修改*/
 function edit(postId) {
     var url = prefix + '/edit/' + postId;
-    layer_showAuto("修改岗位", url);
+    layer_showAuto("修改去向", url);
 }
 
 // 单条删除
 function remove(id) {
-	$.modalConfirm("确定要删除选中岗位吗？", function() {
+	$.modalConfirm("确定要删除选中项目吗？", function() {
 		_ajax(prefix + "/remove/" + id, "", "post");
     })
 }

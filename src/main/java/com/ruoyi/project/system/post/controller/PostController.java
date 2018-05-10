@@ -57,11 +57,11 @@ public class PostController extends BaseController
         Post post = postService.selectPostById(postId);
         if (post == null)
         {
-            return Message.error("岗位不存在");
+            return Message.error("所选项目不存在");
         }
         if (postService.selectCountPostById(postId) > 0)
         {
-            return Message.error("岗位已分配,不能删除");
+            return Message.error("去向状态已分配,不能删除");
         }
         if (postService.deletePostById(postId) > 0)
         {
