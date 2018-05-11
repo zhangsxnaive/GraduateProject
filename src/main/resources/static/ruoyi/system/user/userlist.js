@@ -39,18 +39,15 @@ function queryUserList() {
             field: 'employee',
             title: '就业状态'
         },
-        // {
-        //     field: 'status',
-        //     title: '账户状态',
-        //     align: 'center',
-        //     formatter: function(value, row, index) {
-        //         if (value == '0') {
-        //             return '<span class="label label-success">正常</span>';
-        //         } else if (value == '1') {
-        //             return '<span class="label label-danger">禁用</span>';
-        //         }
-        //     }
-        // }
+        {
+            title: '操作',
+            align: 'center',
+            formatter: function(value, row, index) {
+                var actions = [];
+                actions.push('<a class="btn btn-info' + '" href="#" title="查看" onclick="view(\'' + row.userId + '\')"><i class="fa fa-eye"></i></a> ');
+                return actions.join('');
+            }
+        }
         ];
     var postId = $("#post").val();
     var url = prefix + "/list/"+postId;
@@ -95,4 +92,11 @@ function queryDeptTreeDaTa()
     $('#btnRefresh').click(function() {
         loadTree();
     });
+
+}
+
+/*用户管理-查看*/
+function view(userId) {
+    var url = prefix + '/view/' + userId;
+    layer_showAuto("查看学生信息", url);
 }

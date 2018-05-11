@@ -4,7 +4,6 @@ import com.ruoyi.framework.aspectj.lang.annotation.Log;
 import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.domain.Message;
 import com.ruoyi.framework.web.page.TableDataInfo;
-import com.ruoyi.project.system.area.domain.Area;
 import com.ruoyi.project.system.area.service.AreaService;
 import com.ruoyi.project.system.post.domain.Post;
 import com.ruoyi.project.system.post.service.IPostService;
@@ -90,6 +89,21 @@ public class UserController extends BaseController
         model.addAttribute("posts", posts);
         model.addAttribute("user", user);
         return prefix + "/edit";
+    }
+    /**
+     * 查看用户
+     */
+    @Log(title = "系统管理", action = "用户管理-查看用户")
+    @GetMapping("/view/{userId}")
+    public String view(@PathVariable("userId") Long userId, Model model)
+    {
+        User user = userService.selectUserById(userId);
+        List<Role> roles = roleService.selectRolesByUserId(userId);
+        List<Post> posts = postService.selectPostsByUserId(userId);
+        model.addAttribute("roles", roles);
+        model.addAttribute("posts", posts);
+        model.addAttribute("user", user);
+        return prefix + "/view";
     }
 
     /**
