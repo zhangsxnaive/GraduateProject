@@ -65,6 +65,16 @@ public class User extends PageDomain
     private Long[] postIds;
     /** 就业状态 */
     private String employee;
+    /** 所在城市名称 */
+    private String location;
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
     public String getGender() {
         return gender;

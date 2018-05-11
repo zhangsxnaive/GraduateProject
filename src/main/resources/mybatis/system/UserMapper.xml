@@ -26,6 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="createTime"   column="create_time"  />
 		<result property="updateBy"     column="update_by"    />
 		<result property="updateTime"   column="update_time"  />
+		<result property="location"   column="location"  />
 		<association property="dept"    column="dept_id" javaType="Dept" resultMap="deptResult"/>
 	</resultMap>
 	
@@ -38,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	<select id="selectUserList" parameterType="User" resultMap="UserResult">
         select  u.user_id, u.dept_id, u.login_name, u.user_name, u.email,u.number,u.employee,u.company,u.company_address, u.phonenumber,u.gender,u.student_id, u.user_type,u.password, u.salt, u.status, u.refuse_des,u.create_by, u.create_time,
-        d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status
+        u.location,d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status
         from sys_user u
         left join sys_dept d on u.dept_id = d.dept_id
 		<where>
@@ -53,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="selectUserListByPostId" parameterType="User" resultMap="UserResult">
         select  u.user_id, u.dept_id, u.login_name, u.user_name, u.email,u.number,u.employee,u.company,u.company_address, u.phonenumber,u.gender,u.student_id, u.user_type,u.password, u.salt, u.status, u.refuse_des,u.create_by, u.create_time,
-        d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status
+        u.location,d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status
         from sys_user u
         left join sys_dept d on u.dept_id = d.dept_id
         <where>
@@ -71,7 +72,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="selectUserByName" parameterType="String" resultMap="UserResult">
 		select  u.user_id, u.dept_id, u.login_name, u.user_name, u.email,u.employee, u.phonenumber, u.gender,u.password, u.salt, u.status, u.refuse_des, u.create_time,
-       		    d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status
+       		    u.location,d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status
 		from sys_user u
 			 left join sys_dept d on u.dept_id = d.dept_id
 			 left join sys_user_role ur on u.user_id = ur.user_id
@@ -84,7 +85,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="selectUserById" parameterType="Long" resultMap="UserResult">
 		select  u.user_id, u.dept_id, u.login_name, u.user_name, u.email, u.student_id,u.number,u.company,u.company_address,u.phonenumber,u.gender, u.password, u.salt, u.status, u.refuse_des, u.create_time,
-       		    d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status
+       		    u.location,d.dept_id, d.parent_id, d.dept_name, d.order_num, d.status as dept_status
 		from sys_user u
 			 left join sys_dept d on u.dept_id = d.dept_id
 			 left join sys_user_role ur on u.user_id = ur.user_id
@@ -122,6 +123,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="employee !=null">employee = #{employee},</if>
  			<if test="refuseDes != null and refuseDes != ''">refuse_des = #{refuseDes},</if>
  			<if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
+ 			<if test="location != null and location != ''">location = #{location},</if>
  			update_time = sysdate()
  		</set>
  		where 1=1
@@ -148,6 +150,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="status !=null and status != ''">status,</if>
  			<if test="refuseDes != null and refuseDes != ''">refuse_des,</if>
  			<if test="createBy != null and createBy != ''">create_by,</if>
+ 			<if test="location != null and location != ''">location,</if>
  			create_time
  		)values(
  			<if test="userId != null and userId != ''">#{userId},</if>
@@ -168,6 +171,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="status !=null and status != ''">#{status},</if>
  			<if test="refuseDes != null and refuseDes != ''">#{refuseDes},</if>
  			<if test="createBy != null and createBy != ''">#{createBy},</if>
+ 			<if test="location != null and location != ''">#{location},</if>
  			sysdate()
  		)
 	</insert>

@@ -4,6 +4,8 @@ import com.ruoyi.framework.aspectj.lang.annotation.Log;
 import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.domain.Message;
 import com.ruoyi.framework.web.page.TableDataInfo;
+import com.ruoyi.project.system.area.domain.Area;
+import com.ruoyi.project.system.area.service.AreaService;
 import com.ruoyi.project.system.post.domain.Post;
 import com.ruoyi.project.system.post.service.IPostService;
 import com.ruoyi.project.system.role.domain.Role;
@@ -38,6 +40,9 @@ public class UserController extends BaseController
     
     @Autowired
     private IPostService postService;
+
+    @Autowired
+    private AreaService areaService;
 
     @RequiresPermissions("system:user:view")
     @GetMapping()
@@ -171,7 +176,6 @@ public class UserController extends BaseController
         Post post = postService.selectPostById(postId[0]);
         user.setEmployee(post.getPostName());
         user.setPostId(postId[0]);
-
         for (Long id :
                 user.getRoleIds()) {
             System.out.println("=============>"+id);

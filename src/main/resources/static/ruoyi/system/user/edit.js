@@ -29,6 +29,7 @@ $("#form-user-edit").validate({
 function update() {
 	var userId = $("input[name='userId']").val();
 	var deptId = $("input[name='deptId']").val();
+	var areaId = $("input[name='areaId']").val();
 	var userName = $("input[name='userName']").val();
 	var password = $("input[name='password']").val();
 	var email = $("input[name='email']").val();
@@ -59,7 +60,8 @@ function update() {
             "gender": gender,
 			"status": status,
 			"roleIds": roleIds,
-			"postIds": postIds
+			"postIds": postIds,
+            "location": areaId
 		},
 		async : false,
 		error : function(request) {
@@ -83,3 +85,12 @@ function selectDeptTree() {
     var url = "/system/dept/selectDeptTree/" + deptId;
     layer_show("选择部门", url, '380', '380');
 }
+
+/*用户管理-新增-选择城市树*/
+function selectAreaTree() {
+    var treeId = $("#areaId").val();
+    var areaId = treeId == null || treeId == "" ? "0" : treeId;
+    var url = "/system/area/selectAreaTree/" + areaId;
+    layer_show("选择城市", url, '380', '380');
+}
+
